@@ -6,7 +6,7 @@ const Url = require('../models/Url');
 const router = express.Router();
 
 // Route 1: Create shortened URL
-// POST /api/urls/shorten
+// POST /shorten
 router.post('/shorten', async (req, res) => {
   try {
     const { originalUrl, shortcode, validityDays = 30 } = req.body;
@@ -94,7 +94,7 @@ router.post('/shorten', async (req, res) => {
 });
 
 // Route 2: Get URL statistics (MUST come before the general /:shortCode route)
-// GET /api/urls/stats/:shortCode
+// GET /shorturla/:shortCode
 router.get('/shorturls/:shortCode', async (req, res) => {
   try {
     const { shortCode } = req.params;
@@ -140,7 +140,7 @@ router.get('/shorturls/:shortCode', async (req, res) => {
 });
 
 // Route 3: Redirect to original URL (MUST come after more specific routes)
-// GET /api/urls/:shortCode
+// GET /:shortCode
 router.get('/:shortCode', async (req, res) => {
   try {
     const { shortCode } = req.params;

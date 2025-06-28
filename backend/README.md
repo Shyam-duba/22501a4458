@@ -43,8 +43,8 @@ Creates a new shortened URL with optional custom name and validity period.
 ```json
 {
   "originalUrl": "https://example.com/very-long-url",
-  "customName": "my-custom-link",  // Optional
-  "validityDays": 30               // Optional, default: 30
+  "shortcode": "my-custom-link",  // Optional
+  "validity": 30               // Optional, default: 30
 }
 ```
 
@@ -53,12 +53,8 @@ Creates a new shortened URL with optional custom name and validity period.
 {
   "success": true,
   "data": {
-    "originalUrl": "https://example.com/very-long-url",
     "shortUrl": "http://localhost:3000/api/urls/my-custom-link",
-    "shortCode": "my-custom-link",
-    "customName": "my-custom-link",
     "validity": "2024-02-15T10:30:00.000Z",
-    "expiresIn": "30 days"
   }
 }
 ```
@@ -93,11 +89,6 @@ Retrieves detailed statistics for a shortened URL.
 **GET** `/api/urls/:shortCode`
 
 Redirects to the original URL and updates click statistics.
-
-### 4. List All URLs (Admin)
-**GET** `/api/urls`
-
-Returns a list of all shortened URLs (limited to 50 most recent).
 
 ## Usage Examples
 
@@ -176,21 +167,3 @@ The URL model includes:
 - `userAgent` - Array of user agents
 - `ipAddresses` - Array of unique visitor IPs
 - `isActive` - Whether the URL is active
-
-## Environment Variables
-
-You can configure the following environment variables:
-
-- `PORT` - Server port (default: 3000)
-- `MONGODB_URI` - MongoDB connection string (default: mongodb://localhost:27017/urlshortener)
-
-## Health Check
-
-**GET** `/health`
-
-Returns server status:
-```json
-{
-  "status": "OK",
-  "message": "URL Shortener Service is running"
-} 
