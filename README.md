@@ -12,9 +12,9 @@ A RESTful API service for creating and managing shortened URLs with statistics t
 
 ## Prerequisites
 
-- Node.js (v14 or higher)
-- MongoDB (running locally or cloud instance)
-- npm or yarn
+- Node.js 
+- MongoDB 
+- npm 
 
 ## Installation
 
@@ -60,7 +60,7 @@ Creates a new shortened URL with optional custom name and validity period.
 ```
 
 ### 2. Get URL Statistics
-**GET** `/api/urls/stats/:shortCode`
+**GET** `/shorturls/:shortCode`
 
 Retrieves detailed statistics for a shortened URL.
 
@@ -86,63 +86,9 @@ Retrieves detailed statistics for a shortened URL.
 ```
 
 ### 3. Access Shortened URL
-**GET** `/api/urls/:shortCode`
+**GET** `/:shortCode`
 
 Redirects to the original URL and updates click statistics.
-
-## Usage Examples
-
-### Using cURL
-
-1. **Create a shortened URL:**
-```bash
-curl -X POST http://localhost:3000/api/urls/shorten \
-  -H "Content-Type: application/json" \
-  -d '{
-    "originalUrl": "https://www.google.com",
-    "customName": "google",
-    "validityDays": 60
-  }'
-```
-
-2. **Get statistics:**
-```bash
-curl http://localhost:3000/api/urls/stats/google
-```
-
-3. **Access shortened URL:**
-```bash
-curl -L http://localhost:3000/api/urls/google
-```
-
-### Using JavaScript/Fetch
-
-```javascript
-// Create shortened URL
-const createUrl = async () => {
-  const response = await fetch('http://localhost:3000/api/urls/shorten', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({
-      originalUrl: 'https://www.example.com',
-      customName: 'example',
-      validityDays: 30
-    })
-  });
-  
-  const data = await response.json();
-  console.log(data);
-};
-
-// Get statistics
-const getStats = async (shortCode) => {
-  const response = await fetch(`http://localhost:3000/api/urls/stats/${shortCode}`);
-  const data = await response.json();
-  console.log(data);
-};
-```
 
 ## Error Handling
 
@@ -167,3 +113,10 @@ The URL model includes:
 - `userAgent` - Array of user agents
 - `ipAddresses` - Array of unique visitor IPs
 - `isActive` - Whether the URL is active
+
+## DEMO
+
+
+![Screenshot 2025-06-28 114009](https://github.com/user-attachments/assets/9e6ed716-0157-4393-9160-689f05281a19)
+![Screenshot 2025-06-28 113854](https://github.com/user-attachments/assets/2169f283-7031-49a5-8cc2-869336e1768e)
+![Screenshot 2025-06-28 113843](https://github.com/user-attachments/assets/d6b4958a-8823-4774-9bd3-fb53264ce03e)
